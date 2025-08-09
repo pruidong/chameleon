@@ -222,7 +222,7 @@ def process_image():
         # image_url = f"{request.host_url.rstrip('/')}{file_url_path}" # 本地文件路径，非必需
 
         # 调用模型服务处理图片 (内部包含合规检查)
-        result_b64 = model_service.call_modelscope(file_path, prompt)
+        result_b64 = model_service.call_bailian(file_path, prompt)
 
         # 保存上传记录到数据库 (使用 GitHub ID)
         conn = sqlite3.connect(app.config['DATABASE'])
@@ -251,3 +251,4 @@ if __name__ == '__main__':
     scheduler.start()  # 启动定时任务
     # 注意：生产环境不要使用 debug=True
     app.run(debug=False, host='0.0.0.0', port=5001)
+
